@@ -1,4 +1,4 @@
-<form [formGroup]="parentForm">
+<!-- <form [formGroup]="parentForm">
 
     <div formArrayName="fields">
       <div *ngFor="let field of parentForm.get('fields')['controls']; let i = index">
@@ -8,4 +8,10 @@
 
   </form>
   <app-child (addField)="addMoreField($event)"></app-child>
-  
+   -->
+<form [formGroup]="parentForm">
+  <ng-container *ngFor="let field of formFields">
+    <input type="text" [formControlName]="field">
+  </ng-container>
+</form>
+<app-child (addField)="addField($event)"></app-child>

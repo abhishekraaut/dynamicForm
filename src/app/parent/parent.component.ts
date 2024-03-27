@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-parent',
   templateUrl: './parent.component.html',
@@ -7,20 +7,23 @@ import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 })
 export class ParentComponent implements OnInit {
   parentForm: FormGroup;
+  formFields: string[] = [];
 
   constructor(private fb: FormBuilder) {
-    this.parentForm = this.fb.group({
-      fields: this.fb.array([
-        // this.fb.group({})
-      ])
-    });
   }
 
   ngOnInit(): void {
+    this.parentForm = this.fb.group({});
   }
 
-  addMoreField(value: any) {
-    const newControl = <FormArray>this.parentForm.controls['fields'];
-    newControl.push(new FormControl(value));
+  // addMoreField(value: any) {
+  //   const newControl = <FormArray>this.parentForm.controls['fields'];
+  //   newControl.push(new FormControl(value));
+  // }
+
+  addField(data: string) {
+    this.formFields.push(data);
+    this.parentForm.addControl(data, this.fb.control(''));
   }
+
 }

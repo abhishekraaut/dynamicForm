@@ -8,7 +8,7 @@ export class ChildComponent {
   @Output() 
   addField = new EventEmitter();
 
-  addInput(value: any) {
+  addInput(value: string) {
     this.addField.emit(value);
   }
 }
