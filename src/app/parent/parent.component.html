@@ -1,0 +1,11 @@
+<form [formGroup]="parentForm">
+
+    <div formArrayName="fields">
+      <div *ngFor="let field of parentForm.get('fields')['controls']; let i = index">
+        <input type="text" [formControlName]="i">
+      </div>
+    </div>
+
+  </form>
+  <app-child (addField)="addMoreField($event)"></app-child>
+  
